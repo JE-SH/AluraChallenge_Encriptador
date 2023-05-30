@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <a href="https://github.com/JE-SH"><img class="logo" src="img/logo.png" alt="Logo" srcset=""></a>
+    </header>
+    <main>
+        <section class="encriptador">
+            <textarea class="texto" name="" id="texto" autofocus placeholder="Ingrese el texto aquí"></textarea>
+            <div class="aviso">
+                <svg class="svg_aviso" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#495057" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2a1 1 0 0 0 0-2z"/></svg><p>Solo letras minusculas y sin acentos</p>
+            </div> 
+                <div class="buttons_frame">
+                    <button class="button_dark" onclick="encriptar()">Encriptar</button>
+                    <button class="button_light" onclick="desencriptar()"> Desencriptar  </button>
+                </div>
+        </section>
+        <section class="texto_result">
+            <div class="ventana_espera" id="ventana_espera">
+                <div class="img_v_e">
+                    <img id="img_esperando" src="img/Muñeco.png" alt="imagen de espera">
+                </div>
+                <div class="mensaje_v_e">
+                    <p id="texto_esperando">Ningún mensaje fue encontrado</p>
+                    <p id="texto_esperando_2">Ingresa el texto que desees encriptar o desencriptar.</p>
+                </div>
+                
+                <!-- <textarea class="rectangulo_codificado" name="" id="rectangulo_codificado" contenteditable="false"></textarea>-->
+                <div id="rectangulo_codificado">
+                    <p class="resultado" id="resultado"></p>
+                </div>
+            </div>
+            
+           
+            <div class="btn_copiar">
+                <button id="copiar" class="copiar" onclick="copiar()">Copiar</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script > 
+        /*var texto_elemento = document.querySelector(".texto");*/encriptar
+        var texto_elemento = document.getElementById("texto");
+        var resultado_elemento = document.getElementById("resultado");
+
+        function encriptar(){
+            var texto =  texto_elemento.value.toLowerCase();
+            if(texto.length>0){
+                ocultar_img();
+                let resultado_encriptado = "";
+                texto = quitarAcentos(texto);
+                for (var i=0;i<texto.length;i++){
+                    if(texto[i]=='a') {resultado_encriptado += "ai";}
+                    else if(texto[i]=='e') {resultado_encriptado += "enter";}
+                    else if(texto[i]=='i'){resultado_encriptado += "imes";}
+                    else if(texto[i]=='o') {resultado_encriptado += "ober";}
+                    else if(texto[i]=='u') {resultado_encriptado += "ufat";}
+                    else{resultado_encriptado += texto[i];}
+                }
+                resultado_elemento.innerHTML=resultado_encriptado;
+            }
+            document.getElementById("copiar").textContent = "Copiar";
+
+        }
+
+        function desencriptar(){
+            var texto =  texto_elemento.value.toLowerCase();
+            if(texto.length>0){
+                ocultar_img();
+                let resultado_encriptado = "";
+                texto = quitarAcentos(texto);
+                for (var i=0;i<texto.length;i++){
+                    resultado_encriptado += texto[i];
+                    if(texto[i]=='a') {
+                        if(texto[i+1]=='i')
+                            i+=1;
+                    }
+                    else if(texto[i]=='e') {
+                        if(texto[i+1]=='n'&&texto[i+2]=='t'&&texto[i+3]=='e'&&texto[i+4]=='r')
+                            i+=4;
+                    }
+                    else if(texto[i]=='i'){
+                        if(texto[i+1]=='m'&&texto[i+2]=='e'&&texto[i+3]=='s')
+                            i+=3;
+                    }
+                    else if(texto[i]=='o') {
+                        if(texto[i+1]=='b'&&texto[i+2]=='e'&&texto[i+3]=='r')
+                            i+=3;
+                    }
+                    else if(texto[i]=='u') {
+                        if(texto[i+1]=='f'&&texto[i+2]=='a'&&texto[i+3]=='t')
+                            i+=3;
+                    }
+                }
+                resultado_elemento.innerHTML=resultado_encriptado;
+            }
+            document.getElementById("copiar").textContent = "Copiar";
+
+        }
+
+        function ocultar_img() {
+            document.getElementById("img_esperando").style.display = "none";
+            document.getElementById("texto_esperando").style.display = "none";
+            document.getElementById("texto_esperando_2").style.display = "none";
+
+            document.getElementById("rectangulo_codificado").style.display="flex";
+            document.getElementById("copiar").style.display="flex";
+            let ventana_espera = document.getElementById("ventana_espera");
+            ventana_espera.style.justifyContent="left";
+            ventana_espera.style.alignItems="flex-start";
+            ventana_espera.style.textAlign="left";
+
+        }
+
+        function copiar(){
+            let contenido = document.getElementById("resultado");
+            document.getElementById("copiar").textContent = "Copiado";
+            navigator.clipboard.writeText(contenido.textContent);
+        }
+
+        function quitarAcentos(cadena){
+            const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'a','É':'e','Í':'i','Ó':'o','Ú':'u'};
+            return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
+        }
+    </script>
+</body>
+</html>

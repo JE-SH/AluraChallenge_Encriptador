@@ -1,0 +1,284 @@
+*{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: #F3F5FC;
+
+}
+.logo{
+    width: 7em;
+    padding: .5em 3em;
+}
+main{ /* ---------++++++-----*/
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1em 3em;
+}
+.encriptador{
+    width: 60%;
+    height: 90%;
+
+    margin: 10pt
+}
+
+.texto{
+    width: 85%;
+    height: 500px;
+    border: none;
+    font-size: 24px;
+    color: #0A3871;
+    background: #F3F5FC;
+
+    text-transform: lowercase;
+
+    margin-left: 2em;
+    justify-content: space-around;
+    resize: none;
+} ::placeholder{
+    color: #0A3871;
+} .texto:focus{
+    outline: none;
+}
+.aviso{
+    display: flex;
+    font-size: 10pt;
+    width: 50%;
+    margin-left: 2em;
+
+    
+}
+.svg_aviso{
+    padding: 1em;
+}
+
+.buttons_frame{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    justify-content: space-evenly;
+}
+label{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.button_dark{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    gap: 8px;
+
+    width: 280px;
+
+    /* Dark blue/dark-blue-300 */
+    background: #0A3871;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: white;
+    text-align: center;
+    font-size: 15pt;
+    justify-content: center;
+}
+
+.button_light{
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    gap: 8px;
+
+    width: 280px;
+
+    /* Light gray */
+    background: #D8DFE8;
+
+    /* Dark blue/dark-blue-300 */
+    border: 1px solid #0A3871;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+    flex: none;
+    flex-grow: 0;
+    text-align: center;
+    font-size: 15pt;
+    justify-content: center;
+
+
+}
+
+.texto_result{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    background: #FFFFFF;
+    box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+    border-radius: 32px;
+
+}
+.ventana_espera{
+    display: flex;
+    height: 80%;
+    width: 90%;
+
+    background: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    font-size: 24px;
+    text-align: center;
+    overflow: auto;
+
+}
+.ventana_espera p{
+    font-size: 16px;
+}
+
+
+.img_v_e{
+    height: 70%;
+}
+#img_esperando{
+    background-color: #FFFFFF;
+    width: 80%;
+    margin-top: 5em;
+}
+
+
+#texto_esperando{
+    font-weight: bold;
+    font-size: 24px;
+
+}
+
+#rectangulo_codificado p{
+    font-size: 24px;
+}
+.resultado{
+    background: white;
+    width: 100%;
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+
+.copiar{
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    gap: 8px;
+    width: 280px;
+
+    /* white */
+    background: white;
+
+    /* Dark blue/dark-blue-300 */
+    border: 1px solid #0A3871;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+    flex: none;
+    flex-grow: 0;
+    text-align: center;
+    font-size: 15pt;
+    justify-content: center;
+
+    box-shadow: none;
+    display: none;
+}.copiar:focus{
+    background-color: #D8DFE8;
+    transition: 1s;
+}
+
+@media screen and (max-width:1030px) {
+    main{
+        padding: .5em ;
+    }
+    .encriptador{
+        width: 50%;
+        height: 90%;
+    
+        margin: 10pt
+    }
+    .texto_result{
+    }
+    
+}
+@media screen and (max-width:970px) {
+    main{
+        display: block;
+    }
+    .encriptador{
+        width: 100%;
+        height: 300px;
+    
+        margin: 10pt
+    }
+    .texto{
+        height: 60%;
+    }
+    .texto_result{
+        width: 100%;
+        height: 20%;
+
+
+    }
+    .ventana_espera{
+        height: 20%;
+    }
+    #img_esperando {
+        background-color: #FFFFFF;
+        width: 80%;
+        margin-top: .5em;
+    }
+}
+@media screen and (max-width:880px) {
+    main{
+        display: block;
+    }
+    .encriptador{
+        width: 100%;
+        height: 40%;
+    
+        margin: 10pt
+    }
+    .texto{
+        height: 200px;
+        width: 80%;
+    }
+    .aviso{
+        width: 100%;
+    }
+    .buttons_frame{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .texto_result{
+        height:50% ;
+    }
+    /*.ventana_espera{
+        height: 20%;
+    }*/
+    #img_esperando {
+        display: none;
+    }
+}
